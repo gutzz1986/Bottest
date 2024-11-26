@@ -18,6 +18,18 @@
                 },
                 autostart: true
             });
+
+            // Reset function for the chat widget
+            function resetChat() {
+                if (window.voiceflow && window.voiceflow.chat) {
+                    window.voiceflow.chat.reset(); // Resets the chat widget
+                }
+            }
+
+            // Example of reset after 5 seconds for testing
+            setTimeout(function() {
+                resetChat();
+            }, 5000);
         }
         v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
         v.type = "text/javascript"; 
