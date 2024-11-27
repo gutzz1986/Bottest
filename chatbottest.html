@@ -33,15 +33,30 @@
             position: fixed;
             bottom: 80px; /* Positioned above the chat bubble */
             right: 20px;
-            width: 500px;
-            height: 800px;
+            width: 400px;
+            height: 600px;
             background: #f0f0f0; /* Chat container background color */
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             display: none; /* Initially hidden */
             flex-direction: column;
             overflow-y: auto; /* Enable scrolling by default */
+       }
+
+            /* Mobile-specific styles */
+            @media (max-width: 768px) {
+        #chat-container {
+            width: 90%; /* Adjust width to 90% of the screen */
+            height: 70%; /* Adjust height to 70% of the screen */
+            left: 5%; /* Center horizontally */
+            bottom: 5%; /* Adjust bottom spacing */
         }
+    
+        #chat-bubble {
+            bottom: 10px; /* Move the bubble closer to the bottom */
+            right: 10px;
+        }
+                       
         #chat-header {
             background-color: #0078d4;
             color: white;
