@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voiceflow Chat Widget</title>
+    <style>
+        #chat-container {
+            width: 50%; /* Occupies half the page width */
+            height: 100vh; /* Full viewport height */
+            margin: 0 auto; /* Centers the container horizontally */
+            border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container"></div> <!-- New container for the chat widget -->
+    <script>
+    (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+            window.voiceflow.chat.load({
+                verify: { projectID: '67452afbe736fed81f23d0e3' },
+                url: 'https://general-runtime.voiceflow.com',
+                versionID: 'production',
+                render: {
+                    mode: 'embedded',
+                    target: document.getElementById('chat-container'), // Use the container
+                },
+                autostart: true
+            });
+        }
+        v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
+        v.type = "text/javascript"; 
+        s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+    </script>
+</body>
+</html>
