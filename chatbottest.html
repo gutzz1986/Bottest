@@ -28,7 +28,7 @@
         }
         #chat-container {
             position: fixed;
-            bottom: 20px;
+            bottom: 80px; /* Above the bubble */
             right: 20px;
             width: 400px;
             height: 500px;
@@ -38,13 +38,36 @@
             overflow: hidden;
             display: none; /* Initially hidden */
         }
+        #chat-header {
+            background-color: #0078d4;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #chat-header .close-btn {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
+    <!-- Chat Bubble -->
     <div id="chat-bubble">
         <img src="https://icon-library.com/images/chat-icon-png/chat-icon-png-8.jpg" alt="Chat Icon">
     </div>
-    <div id="chat-container"></div> <!-- Chat widget container -->
+    
+    <!-- Chat Widget Container -->
+    <div id="chat-container">
+        <div id="chat-header">
+            Chat
+            <span class="close-btn" id="close-chat">&times;</span>
+        </div>
+    </div>
+
     <script>
     (function(d, t) {
         var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -65,14 +88,14 @@
         s.parentNode.insertBefore(v, s);
     })(document, 'script');
 
-    // Toggle chat widget visibility
+    // Show chat widget when the bubble is clicked
     document.getElementById('chat-bubble').addEventListener('click', function() {
-        const chatContainer = document.getElementById('chat-container');
-        if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
-            chatContainer.style.display = 'block'; // Show chat widget
-        } else {
-            chatContainer.style.display = 'none'; // Hide chat widget
-        }
+        document.getElementById('chat-container').style.display = 'block';
+    });
+
+    // Close chat widget when the close button is clicked
+    document.getElementById('close-chat').addEventListener('click', function() {
+        document.getElementById('chat-container').style.display = 'none';
     });
     </script>
 </body>
