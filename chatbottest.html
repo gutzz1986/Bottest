@@ -105,8 +105,7 @@
     }
 
     // Modify the Voiceflow chat response to use the typing effect
-    <script type="text/javascript">
-        (function(d, t) {
+    (function(d, t) {
         var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
         v.onload = function() {
             window.voiceflow.chat.load({
@@ -123,7 +122,7 @@
                         simulateTyping(responseText, chatContainer); // Simulate typing effect
                     }
                 },
-                autostart: true
+                autostart: false
             });
         }
         v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
