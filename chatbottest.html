@@ -3,16 +3,48 @@
 <head>
     <title>Voiceflow Chat Widget</title>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        #chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #0078d4; /* Widget bubble color */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #chat-bubble img {
+            width: 40px;
+            height: 40px;
+        }
         #chat-container {
-            width: 50%; /* Occupies half the page width */
-            height: 100vh; /* Full viewport height */
-            margin: 0 auto; /* Centers the container horizontally */
-            border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 400px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: none; /* Initially hidden */
         }
     </style>
 </head>
 <body>
-    <div id="chat-container"></div> <!-- New container for the chat widget -->
+    <div id="chat-bubble">
+        <img src="https://icon-library.com/images/chat-icon-png/chat-icon-png-8.jpg" alt="Chat Icon">
+    </div>
+    <div id="chat-container"></div> <!-- Chat widget container -->
     <script>
     (function(d, t) {
         var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -23,15 +55,25 @@
                 versionID: 'production',
                 render: {
                     mode: 'embedded',
-                    target: document.getElementById('chat-container'), // Use the container
+                    target: document.getElementById('chat-container'),
                 },
-                autostart: true
+                autostart: false
             });
         }
         v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
         v.type = "text/javascript"; 
         s.parentNode.insertBefore(v, s);
     })(document, 'script');
+
+    // Toggle chat widget visibility
+    document.getElementById('chat-bubble').addEventListener('click', function() {
+        const chatContainer = document.getElementById('chat-container');
+        if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+            chatContainer.style.display = 'block'; // Show chat widget
+        } else {
+            chatContainer.style.display = 'none'; // Hide chat widget
+        }
+    });
     </script>
 </body>
 </html>
