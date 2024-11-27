@@ -2,8 +2,17 @@
 <html>
 <head>
     <title>Voiceflow Chat Widget</title>
+    <style>
+        #chat-container {
+            width: 50%; /* Occupies half the page width */
+            height: 100vh; /* Full viewport height */
+            margin: 0 auto; /* Centers the container horizontally */
+            border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+        }
+    </style>
 </head>
 <body>
+    <div id="chat-container"></div> <!-- New container for the chat widget -->
     <script>
     (function(d, t) {
         var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -14,22 +23,10 @@
                 versionID: 'production',
                 render: {
                     mode: 'embedded',
-                    target: document.body,
+                    target: document.getElementById('chat-container'), // Use the container
                 },
                 autostart: true
             });
-
-            // Reset function for the chat widget
-            function resetChat() {
-                if (window.voiceflow && window.voiceflow.chat) {
-                    window.voiceflow.chat.reset(); // Resets the chat widget
-                }
-            }
-
-            // Example of reset after 5 seconds for testing
-            setTimeout(function() {
-                resetChat();
-            }, 5000);
         }
         v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
         v.type = "text/javascript"; 
