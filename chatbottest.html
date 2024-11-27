@@ -14,7 +14,7 @@
             right: 20px;
             width: 60px;
             height: 60px;
-            background-color: #0078d4;
+            background-color: #0078d4; /* Widget bubble color */
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -28,14 +28,14 @@
         }
         #chat-container {
             position: fixed;
-            bottom: 80px;
+            bottom: 80px; /* Positioned above the chat bubble */
             right: 20px;
             width: 400px;
             height: 500px;
-            background: white;
+            background: black;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            display: none;
+            display: none; /* Initially hidden */
             flex-direction: column;
         }
         #chat-header {
@@ -46,11 +46,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        #chat-header .close-btn {
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 18px;
         }
     </style>
 </head>
@@ -64,7 +59,6 @@
     <div id="chat-container">
         <div id="chat-header">
             Chat
-            <span class="close-btn" id="close-chat">&times;</span>
         </div>
     </div>
 
@@ -80,7 +74,7 @@
                     mode: 'embedded',
                     target: document.getElementById('chat-container'),
                 },
-                autostart: false
+                autostart: true
             });
         }
         v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
@@ -88,16 +82,14 @@
         s.parentNode.insertBefore(v, s);
     })(document, 'script');
 
-    // Show chat widget when the bubble is clicked
+    // Toggle chat widget visibility when clicking the chat bubble
     document.getElementById('chat-bubble').addEventListener('click', function() {
         const chatContainer = document.getElementById('chat-container');
-        chatContainer.style.display = 'flex'; // Show the chat widget
-    });
-
-    // Close chat widget when the close button is clicked
-    document.getElementById('close-chat').addEventListener('click', function() {
-        const chatContainer = document.getElementById('chat-container');
-        chatContainer.style.display = 'none'; // Hide the chat widget
+        if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+            chatContainer.style.display = 'flex'; // Show the chat widget
+        } else {
+            chatContainer.style.display = 'none'; // Hide the chat widget
+        }
     });
     </script>
 </body>
