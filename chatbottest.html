@@ -14,7 +14,7 @@
             right: 20px;
             width: 60px;
             height: 60px;
-            background-color: #0078d4; /* Widget bubble color */
+            background-color: #0078d4;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -28,15 +28,15 @@
         }
         #chat-container {
             position: fixed;
-            bottom: 80px; /* Above the bubble */
+            bottom: 80px;
             right: 20px;
             width: 400px;
             height: 500px;
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            display: none; /* Initially hidden */
+            display: none;
+            flex-direction: column;
         }
         #chat-header {
             background-color: #0078d4;
@@ -90,12 +90,14 @@
 
     // Show chat widget when the bubble is clicked
     document.getElementById('chat-bubble').addEventListener('click', function() {
-        document.getElementById('chat-container').style.display = 'block';
+        const chatContainer = document.getElementById('chat-container');
+        chatContainer.style.display = 'flex'; // Show the chat widget
     });
 
     // Close chat widget when the close button is clicked
     document.getElementById('close-chat').addEventListener('click', function() {
-        document.getElementById('chat-container').style.display = 'none';
+        const chatContainer = document.getElementById('chat-container');
+        chatContainer.style.display = 'none'; // Hide the chat widget
     });
     </script>
 </body>
