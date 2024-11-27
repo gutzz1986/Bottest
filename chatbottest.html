@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voiceflow Chat Widget</title>
     <style>
         body {
@@ -33,11 +35,12 @@
             right: 20px;
             width: 400px;
             height: 500px;
-            background: black;
+            background: #f0f0f0; /* Chat container background color */
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             display: none; /* Initially hidden */
             flex-direction: column;
+            overflow-y: auto; /* Enable scrolling by default */
         }
         #chat-header {
             background-color: #0078d4;
@@ -47,6 +50,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        .chat-message {
+            padding: 10px;
+            margin: 5px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -58,12 +68,41 @@
     
     <!-- Chat Widget Container -->
     <div id="chat-container">
-        <div id="chat-header">
-            Chat
-        </div>
+        <div id="chat-header">Chat</div>
     </div>
 
     <script>
+    // Function to simulate typing effect
+    function simulateTyping(responseText, chatContainer) {
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('chat-message'); // Add class for styling
+        chatContainer.appendChild(messageContainer);
+
+        let index = 0;
+        messageContainer.innerHTML = ''; // Ensure message container is empty
+        const typingInterval = setInterval(() => {
+            messageContainer.innerHTML += responseText.charAt(index);
+            index++;
+            // Scroll to the bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            if (index === responseText.length) {
+                clearInterval(typingInterval); // Stop typing when message is complete
+                enableScrolling(chatContainer); // Re-enable scrolling after typing is done
+            }
+        }, 50); // Adjust speed of typing (50ms per character)
+    }
+
+    // Disable scrolling temporarily
+    function disableScrolling(chatContainer) {
+        chatContainer.style.overflowY = 'hidden';
+    }
+
+    // Enable scrolling
+    function enableScrolling(chatContainer) {
+        chatContainer.style.overflowY = 'auto';
+    }
+
+    // Modify the Voiceflow chat response to use the typing effect
     (function(d, t) {
         var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
         v.onload = function() {
@@ -74,6 +113,12 @@
                 render: {
                     mode: 'embedded',
                     target: document.getElementById('chat-container'),
+                    // Override the default behavior to use our typing effect
+                    responseHandler: function(responseText) {
+                        const chatContainer = document.getElementById('chat-container');
+                        disableScrolling(chatContainer); // Disable scrolling while typing
+                        simulateTyping(responseText, chatContainer); // Simulate typing effect
+                    }
                 },
                 autostart: true
             });
