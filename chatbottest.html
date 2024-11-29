@@ -137,13 +137,12 @@
     (function(d, t) {
     var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
 
+    (function(d, t) {
+    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+
     // Detect the language of the browser
     var userLanguage = navigator.language || navigator.userLanguage;
-    v.onload = function() {
-        // Render the React App once the script is loaded
-        const container = document.getElementById('root'); // Assuming you have a div with id="root"
-        const root = ReactDOMClient.createRoot(container); // Create the root container for React
-        root.render(<App />); // Render your React App
+
     v.onload = function() {
         window.voiceflow.chat.load({
             verify: { projectID: '67452afbe736fed81f23d0e3' },
@@ -168,7 +167,6 @@
     v.type = "text/javascript"; 
     s.parentNode.insertBefore(v, s);
 })(document, 'script');
-
 
     // Toggle chat widget visibility when clicking the chat bubble
     document.getElementById('chat-bubble').addEventListener('click', function() {
