@@ -91,85 +91,17 @@
     </div>
     
     <script type="text/javascript">
-  window.addEventListener("load", function () {
-    var userLang = navigator.language || navigator.userLanguage; 
-    var language = userLang.split("-")[0]; // Get the language code (e.g., "en", "fr")
-
-    var widget = new VFWidget({
-      "projectID": "67452afbe736fed81f23d0e3",
-      "language": language,  // Set the language based on user's browser settings
-      // other widget settings here
-    });
-    widget.mount();
-  });
-</script>
-    <script>
-    // Function to simulate typing effect
-    function simulateTyping(responseText, chatContainer) {
-        const messageContainer = document.createElement('div');
-        messageContainer.classList.add('chat-message'); // Add class for styling
-        chatContainer.appendChild(messageContainer);
-
-        let index = 0;
-        messageContainer.innerHTML = ''; // Ensure message container is empty
-        const typingInterval = setInterval(() => {
-            messageContainer.innerHTML += responseText.charAt(index);
-            index++;
-            // Scroll to the bottom
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-            if (index === responseText.length) {
-                clearInterval(typingInterval); // Stop typing when message is complete
-                enableScrolling(chatContainer); // Re-enable scrolling after typing is done
-            }
-        }, 50); // Adjust speed of typing (50ms per character)
-    }
-
-    // Disable scrolling temporarily
-    function disableScrolling(chatContainer) {
-        chatContainer.style.overflowY = 'hidden';
-    }
-
-    // Enable scrolling
-    function enableScrolling(chatContainer) {
-        chatContainer.style.overflowY = 'auto';
-    }
-    
-    (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-
-    // Detect the language of the browser
-    var userLanguage = navigator.language || navigator.userLanguage;
-
-    v.onload = function() {
-        // Render the React App once the script is loaded
-        const container = document.getElementById('root'); // Assuming you have a div with id="root"
-        const root = ReactDOMClient.createRoot(container); // Create the root container for React
-        root.render(<App />); // Render your React App
-
-        // Initialize Voiceflow chat widget
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
         window.voiceflow.chat.load({
-            verify: { projectID: '67452afbe736fed81f23d0e3' },
-            url: 'https://general-runtime.voiceflow.com',
-            versionID: 'production',
-            language: userLanguage,  // Pass the detected language to the Voiceflow widget
-            render: {
-                mode: 'embedded',
-                target: document.getElementById('chat-container'),
-                // Override the default behavior to use our typing effect
-                responseHandler: function(responseText) {
-                    const chatContainer = document.getElementById('chat-container');
-                    disableScrolling(chatContainer); // Disable scrolling while typing
-                    simulateTyping(responseText, chatContainer); // Simulate typing effect
-                }
-            },
-            autostart: false
+          verify: { projectID: '67452afbe736fed81f23d0e3' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production'
         });
-    }
-
-    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
-    v.type = "text/javascript"; 
-    s.parentNode.insertBefore(v, s);
-})(document, 'script');
-VM505:11 Uncaught SyntaxError: Unexpected token '<'
+      }
+      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
 </body>
 </html>
