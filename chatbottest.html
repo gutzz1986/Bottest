@@ -120,7 +120,10 @@
     function enableScrolling(chatContainer) {
         chatContainer.style.overflowY = 'auto';
     }
-
+    # Capturing URL
+    <script>
+  var current_url = window.location.href;
+    </script>
     // Modify the Voiceflow chat response to use the typing effect
     (function(d, t) {
         var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
@@ -129,6 +132,15 @@
                 verify: { projectID: '67452afbe736fed81f23d0e3' },
                 url: 'https://general-runtime.voiceflow.com',
                 versionID: 'production',
+                launch: {
+              event: {
+                type: "launch",
+                payload: {
+                  url: current_url 
+                }
+              }
+            }
+        });
                 render: {
                     mode: 'embedded',
                     target: document.getElementById('chat-container'),
