@@ -1,107 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voiceflow Chat Widget</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background-image: url('https://members.infinitygaming.co/app-assets/images/pages/bg6.jpg'); /* Replace with the path to your image */
-            background-size: cover; /* Ensures the image covers the whole page */
-            background-position: center; /* Centers the image */
-        }
-        #chat-bubble {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #0078d4; /* Widget bubble color */
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        #chat-bubble img {
-            width: 50px;
-            height: 50px;
-        }
-        #chat-container {
-            position: fixed;
-            bottom: 80px; /* Positioned above the chat bubble */
-            right: 20px;
-            width: 400px;
-            height: 600px;
-            background: #f0f0f0; /* Chat container background color */
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            display: none; /* Initially hidden */
-            flex-direction: column;
-            overflow-y: auto; /* Enable scrolling by default */
-       }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voiceflow Chat Widget</title>
+<style>
+body {
+margin: 0;
+padding: 0;
+height: 100vh;
+background-image: url('https://members.infinitygaming.co/app-assets/images/pages/bg6.jpg'); /* Replace with the path to your image */
+background-size: cover; /* Ensures the image covers the whole page */
+background-position: center; /* Centers the image */
+}
+#chat-bubble {
+position: fixed;
+bottom: 20px;
+right: 20px;
+width: 60px;
+height: 60px;
+background-color: #0078d4; /* Widget bubble color */
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+#chat-bubble img {
+width: 50px;
+height: 50px;
+}
+#chat-container {
+position: fixed;
+bottom: 80px; /* Positioned above the chat bubble */
+right: 20px;
+width: 400px;
+height: 600px;
+background: #f0f0f0; /* Chat container background color */
+border-radius: 10px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+display: none; /* Initially hidden */
+flex-direction: column;
+overflow-y: auto; /* Enable scrolling by default */
+}
 
-            /* Mobile-specific styles */
-            @media (max-width: 768px) {
-        #chat-container {
-            width: 90%; /* Adjust width to 90% of the screen */
-            height: 70%; /* Adjust height to 70% of the screen */
-            left: 5%; /* Center horizontally */
-            bottom: 5%; /* Adjust bottom spacing */
-        }
-    
-        #chat-bubble {
-            bottom: 10px; /* Move the bubble closer to the bottom */
-            right: 10px;
-        }
-                       
-        #chat-header {
-            background-color: #0078d4;
-            color: white;
-            padding: 10px;
-            font-size: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .chat-message {
-            padding: 10px;
-            margin: 5px;
-            font-size: 5px;
-            background-color: #2a3439;
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-    </style>
- 
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+#chat-container {
+width: 90%; /* Adjust width to 90% of the screen */
+height: 70%; /* Adjust height to 70% of the screen */
+left: 5%; /* Center horizontally */
+bottom: 5%; /* Adjust bottom spacing */
+}
+
+#chat-bubble {
+bottom: 10px; /* Move the bubble closer to the bottom */
+right: 10px;
+}
+
+#chat-header {
+background-color: #0078d4;
+color: white;
+padding: 10px;
+font-size: 16px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.chat-message {
+padding: 10px;
+margin: 5px;
+font-size: 5px;
+background-color: #2a3439;
+border-radius: 5px;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+</style>
+
 </head>
 <body>
-    <!-- Chat Bubble -->
-    <div id="chat-bubble">
-        <img src="https://icon-library.com/images/virtual-assistant-icon/virtual-assistant-icon-11.jpg" alt="Chat Icon">
-    </div>
-    
-    <!-- Chat Widget Container -->
-    <div id="chat-container">
-        <div id="chat-header">Chat</div>
-    </div>
-    
-    <script type="text/javascript">
-  (function(d, t) {
-      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-      v.onload = function() {
-        window.voiceflow.chat.load({
-          verify: { projectID: '67452afbe736fed81f23d0e3' },
-          url: 'https://general-runtime.voiceflow.com',
-          versionID: 'production'
-        });
-      }
-      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-  })(document, 'script');
+<!-- Chat Bubble -->
+<div id="chat-bubble">
+<img src="https://icon-library.com/images/virtual-assistant-icon/virtual-assistant-icon-11.jpg" alt="Chat Icon">
+</div>
+
+<!-- Chat Widget Container -->
+<div id="chat-container">
+<div id="chat-header">Chat</div>
+</div>
+
+<script>
+// Function to simulate typing effect
+function simulateTyping(responseText, chatContainer) {
+const messageContainer = document.createElement('div');
+messageContainer.classList.add('chat-message'); // Add class for styling
+chatContainer.appendChild(messageContainer);
+
+let index = 0;
+messageContainer.innerHTML = ''; // Ensure message container is empty
+const typingInterval = setInterval(() => {
+messageContainer.innerHTML += responseText.charAt(index);
+index++;
+// Scroll to the bottom
+chatContainer.scrollTop = chatContainer.scrollHeight;
+if (index === responseText.length) {
+clearInterval(typingInterval); // Stop typing when message is complete
+enableScrolling(chatContainer); // Re-enable scrolling after typing is done
+}
+}, 50); // Adjust speed of typing (50ms per character)
+}
+
+// Disable scrolling temporarily
+function disableScrolling(chatContainer) {
+chatContainer.style.overflowY = 'hidden';
+}
+
+// Enable scrolling
+function enableScrolling(chatContainer) {
+chatContainer.style.overflowY = 'auto';
+}
+
+// Modify the Voiceflow chat response to use the typing effect
+(function(d, t) {
+var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+v.onload = function() {
+window.voiceflow.chat.load({
+verify: { projectID: '67452afbe736fed81f23d0e3' },
+url: 'https://general-runtime.voiceflow.com',
+versionID: 'production',
+render: {
+mode: 'embedded',
+target: document.getElementById('chat-container'),
+// Override the default behavior to use our typing effect
+responseHandler: function(responseText) {
+const chatContainer = document.getElementById('chat-container');
+disableScrolling(chatContainer); // Disable scrolling while typing
+simulateTyping(responseText, chatContainer); // Simulate typing effect
+}
+},
+autostart: false
+});
+}
+v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
+v.type = "text/javascript"; 
+s.parentNode.insertBefore(v, s);
+})(document, 'script');
+
+// Toggle chat widget visibility when clicking the chat bubble
+document.getElementById('chat-bubble').addEventListener('click', function() {
+const chatContainer = document.getElementById('chat-container');
+if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+chatContainer.style.display = 'flex'; // Show the chat widget
+} else {
+chatContainer.style.display = 'none'; // Hide the chat widget
+}
+});
 </script>
 </body>
 </html>
