@@ -133,40 +133,19 @@
     function enableScrolling(chatContainer) {
         chatContainer.style.overflowY = 'auto';
     }
-    // Modify the Voiceflow chat response to use the typing effect
-    (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-
-    (function(d, t) {
-    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-
-    // Detect the language of the browser
-    var userLanguage = navigator.language || navigator.userLanguage;
-
-    v.onload = function() {
+    
+    <script type="text/javascript">
+      (function(d, t) {
+        v.onload = function() {
         window.voiceflow.chat.load({
-            verify: { projectID: '67452afbe736fed81f23d0e3' },
-            url: 'https://general-runtime.voiceflow.com',
-            versionID: 'production',
-            language: userLanguage,  // Pass the detected language to the Voiceflow widget
-            render: {
-                mode: 'embedded',
-                target: document.getElementById('chat-container'),
-                // Override the default behavior to use our typing effect
-                responseHandler: function(responseText) {
-                    const chatContainer = document.getElementById('chat-container');
-                    disableScrolling(chatContainer); // Disable scrolling while typing
-                    simulateTyping(responseText, chatContainer); // Simulate typing effect
-                }
-            },
-            autostart: false
+          verify: { projectID: '67452afbe736fed81f23d0e3' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production'
         });
-    }
-
-    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
-    v.type = "text/javascript"; 
-    s.parentNode.insertBefore(v, s);
-})(document, 'script');
+      }
+      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
 
     // Toggle chat widget visibility when clicking the chat bubble
     document.getElementById('chat-bubble').addEventListener('click', function() {
